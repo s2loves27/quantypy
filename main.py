@@ -1,4 +1,5 @@
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import sys
 import logging
 import argparse
@@ -11,7 +12,7 @@ import data_manager
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--stock_code', nargs='+')
+    parser.add_argument('--stock_code', nargs='+', default=['005380'])
     parser.add_argument('--ver', choices=['v1', 'v2'], default='v2')
     parser.add_argument('--rl_method', 
         choices=['dqn', 'pg', 'ac', 'a2c', 'a3c'])
@@ -95,7 +96,7 @@ if __name__ == '__main__':
         # 차트 데이터, 학습 데이터 준비
         chart_data, training_data = data_manager.load_data(
             os.path.join(settings.BASE_DIR, 
-            'data/{}/{}.csv'.format(args.ver, stock_code)), 
+            r'data\{}\{}.csv'.format(args.ver, stock_code)),
             args.start_date, args.end_date, ver=args.ver)
         
         # 최소/최대 투자 단위 설정
