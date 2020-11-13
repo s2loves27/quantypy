@@ -15,7 +15,7 @@ if __name__ == '__main__':
     parser.add_argument('--stock_code', nargs='+', default=['005380'])
     parser.add_argument('--ver', choices=['v1', 'v2'], default='v2')
     parser.add_argument('--rl_method', 
-        choices=['dqn', 'pg', 'ac', 'a2c', 'a3c'])
+        choices=['dqn', 'pg', 'ac', 'a2c', 'a3c'], default='a3c')
     parser.add_argument('--net', 
         choices=['dnn', 'lstm', 'cnn'], default='dnn')
     parser.add_argument('--num_steps', type=int, default=1)
@@ -36,6 +36,7 @@ if __name__ == '__main__':
     parser.add_argument('--start_date', default='20170101')
     parser.add_argument('--end_date', default='20171231')
     args = parser.parse_args()
+
 
     # Keras Backend 설정
     if args.backend == 'tensorflow':

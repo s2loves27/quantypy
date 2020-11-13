@@ -30,12 +30,14 @@ class ReinforcementLearner:
         assert num_steps > 0
         assert lr > 0
         # 강화학습 기법 설정
+        # 'dqn', 'pg', 'ac', 'a2c', 'a3c'
         self.rl_method = rl_method
         # 환경 설정
         self.stock_code = stock_code
         self.chart_data = chart_data
         self.environment = Environment(chart_data)
         # 에이전트 설정
+        # 에이전트를 변경 함으로써 새로운 환경을 만들어 줄 수 있다.
         self.agent = Agent(self.environment,
                     min_trading_unit=min_trading_unit,
                     max_trading_unit=max_trading_unit,
@@ -49,6 +51,12 @@ class ReinforcementLearner:
         if self.training_data is not None:
             self.num_features += self.training_data.shape[1]
         # 신경망 설정
+        # network 관련 설정
+        # net : 'dnn', 'lstm', 'cnn'
+        # num_steps : 몇번 돌것인가?
+        # lr : 학습률
+        # value_network : ....
+        # policy_network : ...
         self.net = net
         self.num_steps = num_steps
         self.lr = lr
