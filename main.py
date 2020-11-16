@@ -13,10 +13,10 @@ import data_manager
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--stock_code', nargs='+', default=['005380'])
-    parser.add_argument('--ver', choices=['v1', 'v2'], default='v2')
+    parser.add_argument('--ver', choices=['v1', 'v2'], default='v1')
     parser.add_argument('--rl_method', 
         choices=['dqn', 'pg', 'ac', 'a2c', 'a3c'], default='a3c')
-    parser.add_argument('--net', 
+    parser.add_argument('--net',
         choices=['dnn', 'lstm', 'cnn'], default='dnn')
     parser.add_argument('--num_steps', type=int, default=1)
     parser.add_argument('--lr', type=float, default=0.01)
