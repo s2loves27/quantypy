@@ -16,14 +16,19 @@ sess = None
 
 
 if os.environ['KERAS_BACKEND'] == 'tensorflow':
+    import tensorflow.keras as keras
+    import tensorflow as tf
     from tensorflow.keras.models import Model
     from tensorflow.keras.layers import Input, Dense, LSTM, Conv2D, \
         BatchNormalization, Dropout, MaxPooling2D, Flatten
     from tensorflow.keras.optimizers import SGD
-    from tensorflow.keras.backend import set_session
-    import tensorflow as tf
-    graph = tf.get_default_graph()
+    # from tensorflow.keras.backend import set_session
+    # from tensorflow.keras import backend as K
+
+    graph = tf.compat.v1.get_default_graph()
     sess = tf.compat.v1.Session()
+    # tf.compat.v1.experimental.output_all_intermediates(Tru
+    # e)
 elif os.environ['KERAS_BACKEND'] == 'plaidml.keras.backend':
     from keras.models import Model
     from keras.layers import Input, Dense, LSTM, Conv2D, \
@@ -243,7 +248,7 @@ class CNN(Network):
         super().__init__(*args, **kwargs)
         with graph.as_default():
             if sess is not None:
-                set_session(sess)
+                K.set_session(sess)
             self.num_steps = num_steps
             inp = None
             output = None

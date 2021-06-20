@@ -10,14 +10,20 @@ import utils
 import data_manager
 
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
+    #강화학습의 환경이 될 주식 종목 코드 (A3C의 경우 여러개의 종목 코드를 입력합니다.
     parser.add_argument('--stock_code', nargs='+', default=['005380'])
+    #RLTrader의 버전 명시합니다. 기본값으로 v2를 사용합니다.
     parser.add_argument('--ver', choices=['v1', 'v2'], default='v1')
+    #강화학습 방식을 설정합니다 dqn, pg, ac, a2c, a3c중에 하나를 정합니다.
     parser.add_argument('--rl_method', 
         choices=['dqn', 'pg', 'ac', 'a2c', 'a3c'], default='a3c')
+    #가치 신경망과 정책 신경망에서 사용할 신경망 유형을 선택합니다.
     parser.add_argument('--net',
         choices=['dnn', 'lstm', 'cnn'], default='dnn')
+
     parser.add_argument('--num_steps', type=int, default=1)
     parser.add_argument('--lr', type=float, default=0.01)
     parser.add_argument('--discount_factor', type=float, default=0.9)
@@ -35,6 +41,7 @@ if __name__ == '__main__':
     parser.add_argument('--learning', action='store_true')
     parser.add_argument('--start_date', default='20170101')
     parser.add_argument('--end_date', default='20171231')
+
     args = parser.parse_args()
 
 
